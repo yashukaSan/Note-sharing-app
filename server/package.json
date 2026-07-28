@@ -1,0 +1,24 @@
+{
+  "name": "note-share-server",
+  "version": "1.0.0",
+  "description": "A project in which clients can share their notes with other clients",
+  "homepage": "https://github.com/yashukaSan/Note-sharing-app#readme",
+  "bugs": {
+    "url": "https://github.com/yashukaSan/Note-sharing-app/issues"
+  },
+  "repository": {
+    },
+  "license": "ISC",
+  "author": "Yogesh Sahu",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test --ui"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mongoose": "^9.8.1"
+  }
+}
