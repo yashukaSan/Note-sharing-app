@@ -15,7 +15,7 @@ export default function LoginPage(){
                 className="hover:bg-[#4d4d4d] rounded-xl text-center p-1"
               />
             </label>
-            <label className="flex border-3 border-t-blue-500 border-l-blue-500 border-r-red-400 border-b-red-400 p-2 rounded-xl w-100 items-center justify-center items-center gap-10">
+            <label className="flex border-3 border-t-blue-500 border-l-blue-500 border-r-red-400 border-b-red-400 p-2 rounded-xl w-100 justify-center items-center gap-10">
               Password:
               <div className="flex items-center justify-center">
                 <input
