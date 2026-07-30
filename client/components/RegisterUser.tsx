@@ -1,13 +1,14 @@
 import { Eye, EyeClosed } from "lucide-react";
 import { useState } from "react";
+import { Link } from 'react-router';
 
 export default function RegisterUser() {
   const [showPass, setShowPass] = useState(false);
   return (
     <>
       <section className=" h-screen pt-5 items-center dark:bg-[#191919] ">
-        <form className="flex m-35 xl:mt-35 rounded-3xl flex-col gap-5 justify-center items-center border-[#fe2e9e] text-white border-6  h-[40vh] ">
-          <h1 className="text-4xl bg-red-400 w-[60%] text-center p-3 rounded-4xl font-mono ">
+        <form className="flex m-35 xl:mt-35 rounded-3xl flex-col gap-5 justify-center items-center border-[#fe2e9e] text-white border-6 min-w-120 h-[40vh] ">
+          <h1 className="text-4xl bg-red-400 min-w-100 w-[40%] text-center p-3 rounded-4xl font-mono ">
             Registration
           </h1>
           <label className="border-l-red-400 border-t-red-400 border-r-blue-500 border-b-blue-500 border-3 flex p-2 w-100 rounded-xl justify-center items-center gap-10 ">
@@ -26,7 +27,7 @@ export default function RegisterUser() {
               className="hover:bg-[#4d4d4d] rounded-xl text-center p-1"
             />
           </label>
-          <label className="flex border-3 border-t-blue-500 border-l-blue-500 border-r-red-400 border-b-red-400 p-2 rounded-xl w-100 items-center justify-center items-center gap-10">
+          <label className="flex border-3 border-t-blue-500 border-l-blue-500 border-r-red-400 border-b-red-400 p-2 rounded-xl w-100 justify-center items-center gap-10">
             Password:
             <div className="flex items-center justify-center">
               <input
@@ -60,9 +61,9 @@ export default function RegisterUser() {
             Register
           </button>
 
-          <div className="underline hover:text-blue-500" >
-            Already Registered
-        </div>
+          <nav className="underline hover:text-blue-400">
+            <Link to="/login">Already Registered</Link>
+          </nav>
         </form>
       </section>
     </>
