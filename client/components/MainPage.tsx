@@ -2,12 +2,35 @@ import { Link } from "react-router";
 import Header from './Header.tsx';
 import Footer from './Footer.tsx';
 import type {JSX} from 'react';
+import { motion, useScroll, useMotionValueEvent } from "motion/react";
+import { useState } from "react";
 
 export default function MainPage():JSX.Element {
+  const { scrollY } = useScroll();
+  const [hidden, setHidden] = useState(false);
+
+  useMotionValueEvent(scrollY, "change", (current) => {
+    const prev = scrollY.getPrevious() ?? 0;
+    if (current > prev && current > 140) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+  });
+
   return (
     <main>
-      <Header />
-      <section>
+      <motion.div
+        animate={{
+          y: hidden ? -140 : 0,
+          opacity: hidden ? 0 : 1,
+        }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="fixed w-full backdrop-blur-[10px] z-100"
+      >
+        <Header />
+      </motion.div>
+      <section className="h-screen pt-30">
         <h1>Make Note Sharing Easy with Note-Sharer</h1>
         <p>
           All your notes, synced on all your devices. Get Note-Sharer and start
@@ -18,7 +41,7 @@ export default function MainPage():JSX.Element {
         </button>
       </section>
       <section>Section for image</section>
-      <section>
+      <section className="h-screen">
         <h1>Comprehensive underneath, simple on the surface</h1>
         <ul>
           <li>
