@@ -4,6 +4,7 @@ import Footer from './Footer.tsx';
 import type {JSX} from 'react';
 import { motion, useScroll, useMotionValueEvent } from "motion/react";
 import { useState } from "react";
+import Typewriter from 'typewriter-effect';
 
 export default function MainPage():JSX.Element {
   const { scrollY } = useScroll();
@@ -18,6 +19,10 @@ export default function MainPage():JSX.Element {
     }
   });
 
+  const signUpButtonClass = `border-12 m-auto min-w-50 min-h-20 rounded-4xl font-extrabold text-2xl text-blue-400 bg-white
+     hover:text-white hover:bg-blue-400 hover:border-white hover:shadow-xl hover:shadow-blue-400
+     dark:bg-[#202020] dark:text-red-500 dark:border-6 dark:font-bold 
+     dark:hover:text-black dark:hover:bg-red-500 dark:hover:border-black dark:hover:font-extrabold dark:hover:shadow-red-400`;
   return (
     <main>
       <motion.div
@@ -30,13 +35,27 @@ export default function MainPage():JSX.Element {
       >
         <Header />
       </motion.div>
-      <section className="h-screen pt-30">
-        <h1>Make Note Sharing Easy with Note-Sharer</h1>
-        <p>
-          All your notes, synced on all your devices. Get Note-Sharer and start
-          shering notes with your friends.
+      <section className="h-screen pt-30 bg-[#393940] grid items-center">
+        <h1 className="text-4xl text-center text-[#dddddd] font-bold font-serif ">
+          Make Note Sharing Easy with
+          <br />{" "}
+          <span className="text-white" >
+            <Typewriter
+              options={{
+                strings: ["Note-Sharer"],
+                autoStart: true,
+                loop: true,
+                deleteSpeed: 50,
+                delay: 170,
+              }}
+            />
+          </span>
+        </h1>
+        <p className="text-center hover:text-[#efefef] hover:bg-gray-500 text-xl px-16 text-[#afafaf] font-semibold bg-gray-600 p-30 rounded-2xl w-[80%] m-auto ">
+          All your notes, synced on all your devices.
+          <br /> Get Note-Sharer and start shering notes with your friends.
         </p>
-        <button>
+        <button className={signUpButtonClass}>
           <Link to="/register">Sign Up Now</Link>
         </button>
       </section>
