@@ -68,8 +68,8 @@ export default function MainPage():JSX.Element {
         <Header />
       </motion.div>
 
-      <section className="h-screen pt-30 bg-[#393940] grid items-center">
-        <h1 className="text-4xl text-center text-[#dddddd] font-bold font-serif ">
+      <section className="min-h-screen pt-30 bg-[#393940] grid items-center">
+        <h1 className="md:text-4xl text-xl text-center text-[#dddddd] font-bold font-serif ">
           Make Note Sharing Easy with
           <br />{" "}
           <span className="text-white" >
@@ -84,7 +84,7 @@ export default function MainPage():JSX.Element {
             />
           </span>
         </h1>
-        <p className="text-center hover:text-[#efefef] hover:bg-gray-500 text-xl px-16 text-[#afafaf] font-semibold bg-gray-600 p-30 rounded-2xl w-[80%] m-auto ">
+        <p className="text-center flex justify-center hover:text-[#efefef] md:h-full hover:bg-gray-500 text-sm md:text-xl px-16 text-[#afafaf] font-semibold bg-gray-600 text-center py-10 md:p-30 rounded-2xl md:w-[80%] md:m-auto ">
           All your notes, synced on all your devices.
           <br /> Get Note-Sharer and start shering notes with your friends.
         </p>
@@ -93,9 +93,9 @@ export default function MainPage():JSX.Element {
         </button>
       </section>
 
-      <section className="h-[50vh] bg-gray-400 text-4xl text-center " >Section for image</section>
+      <section className="min-h-[50vh] bg-gray-400 text-4xl text-center " >Section for image</section>
 
-      <section className="h-screen max-w-250 m-auto bg-cyan-700 text-2xl flex flex-col justify-center gap-12 item-center text-center text-yellow-300 font-semibold ">
+      <section className="min-h-[100vh] max-w-250 m-auto bg-cyan-700 text-2xl flex flex-col justify-center gap-12 item-center text-center text-yellow-300 font-semibold ">
         <h1 className="text-5xl text-white" >Comprehensive underneath,<br/> simple on the surface</h1>
         <ul className="grid h-[70%] md:h-[50%] grid-cols-3 px-6 gap-12" >
           {
@@ -109,10 +109,10 @@ export default function MainPage():JSX.Element {
                   className="md:h-[25%] h-[40%] p-1 text-justify hover:bg-cyan-600 animation items-center duration-600 rounded-t-xl "
                   key={`list-${ind}`}
                 >
-                  <h5 className="text-white text-2xl text-center ">
+                  <h5 className="text-white md:text-2xl text-lg text-center ">
                     {item.h5}
                   </h5>
-                  <p className="text-yellow-200 text-lg hover:bg-cyan-800 h-[12.5vh] rounded-b-xl px-2 ">
+                  <p className="text-yellow-200 md:text-lg text-sm hover:bg-cyan-800 h-[12.5vh] rounded-b-xl px-2 ">
                     {item.p}
                   </p>
                 </motion.li>
