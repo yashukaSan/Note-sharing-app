@@ -1,75 +1,18 @@
-# React + TypeScript + Vite
+# Note Sharer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This Application help users to share their notes and find the notes that are useful to them
+---
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+## Structure of the Project
+The main *index.html* file is the main HTML file which run on the browser
+The package.json and package-lock.json files store the dependencies and dev-dependencies which tell how many and which file dependencies are need to run run this file; the scripts are use to run the development related task, like creating development environment, test the project, and more; also it store the project name, version, author, license name, and other useful informations
+### .gitignore File
+store all the files, folder that need to be ignored when backing-up the data to the GitHub
+### *.config.ts Files
+Used by modern web development tools to define their behavior, plugins, build settings, and rules
+### src Folder
+In this folder, the main files like *.html*, *.css*, *.tsx* files are store which are directly call by the script tag in the *index.html* file
+### public Folder
+This folder store all the files which are to store static assets that the browser can access directly without going through the build, compilation, or bundling process (like Webpack or Vite).
+### component Folder
+This folder store all the components are need to render on the page to show, like Header, footer, login page, register page, etc
