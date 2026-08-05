@@ -51,10 +51,24 @@ export default function MainPage():JSX.Element {
     },
   ];
 
-  const signUpButtonClass = `border-12 m-auto min-w-50 min-h-20 rounded-4xl font-extrabold text-2xl text-blue-400 bg-white
-     hover:text-white hover:bg-blue-400 hover:border-white hover:shadow-xl hover:shadow-blue-400
-     dark:bg-[#202020] dark:text-red-500 dark:border-6 dark:font-bold 
-     dark:hover:text-black dark:hover:bg-red-500 dark:hover:border-black dark:hover:font-extrabold dark:hover:shadow-red-400`;
+  const heroClass =`min-h-screen pt-30 bg-linear-to-tr from-blue-600 via-pink-700 to-purple-800 grid items-center`;
+  const heroH1 = `md:text-4xl xl:text-6xl p-4 text-xl text-center bg-linear-to-r hover:from-pink-600 via-red-400 hover:via-red-500 
+        hover:to-purple-700 text-[#dddddd] font-bold font-serif `;
+  const heroP = `flex justify-center hover:text-[#efefef] bg-linear-to-b hover:from-violet-700 md:h-full 
+        hover:to-transparent to-violet-700 border-b-5 border-gray-500 text-sm md:text-xl lg:text-2xl xl:text-3xl
+        px-16 text-[#afafaf] font-semibold text-center items-center py-10 md:p-30 rounded-2xl md:w-[80%] md:m-auto
+        hover:border-b-0 hover:border-t-5`;
+  const heroButton = `border-12 m-auto min-w-50 min-h-20 rounded-4xl font-extrabold text-2xl text-blue-400
+        bg-white lg:text-4xl lg:p-5
+        hover:text-white hover:bg-blue-400 hover:border-white hover:shadow-xl hover:shadow-blue-400
+        dark:bg-[#202020] dark:text-red-500 dark:border-6 dark:font-bold 
+        dark:hover:text-black dark:hover:bg-red-500 dark:hover:border-black dark:hover:font-extrabold dark:hover:shadow-red-400`;
+  const imgSection = `min-h-[50vh] bg-transparent text-4xl text-center bg-linear-to-b from-pink-900 via-pink-700 to-pink-500
+        hover:from-pink-300 hover:via-pink-600 hover:to-pink-900 hover:text-red-700 hover:font-bold`;
+  const featureSection = `bg-linear-to-t from-blue-600 via-green-200 to-cyan-500 hover:bg-linear-to-b `;
+  const featureDiv = `min-h-screen max-w-250 m-auto bg-cyan-700/10 md:text-2xl flex flex-col justify-center 
+        gap-12 item-center text-center font-semibold rounded-4xl overflow-hidden `;
+  const feedBack = `min-h-screen flex justify-center items-center text-center text-2xl text-black`;
   return (
     <main>
       <motion.div
@@ -63,16 +77,17 @@ export default function MainPage():JSX.Element {
           opacity: hidden ? 0 : 1,
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="fixed w-full backdrop-blur-[10px] z-100"
+        id="head"
+        className="fixed w-full bg-transparent backdrop-blur-[10px] z-100"
       >
         <Header />
       </motion.div>
 
-      <section className="min-h-screen pt-30 bg-[#393940] grid items-center">
-        <h1 className="md:text-4xl text-xl text-center text-[#dddddd] font-bold font-serif ">
+      <section id="hero" className={heroClass}>
+        <h1 id="heroH1" className={heroH1}>
           Make Note Sharing Easy with
           <br />{" "}
-          <span className="text-white" >
+          <span className="text-white">
             <Typewriter
               options={{
                 strings: ["Note-Sharer"],
@@ -84,45 +99,50 @@ export default function MainPage():JSX.Element {
             />
           </span>
         </h1>
-        <p className="text-center flex justify-center hover:text-[#efefef] md:h-full hover:bg-gray-500 text-sm md:text-xl px-16 text-[#afafaf] font-semibold bg-gray-600 text-center py-10 md:p-30 rounded-2xl md:w-[80%] md:m-auto ">
+        <p id="heroP" className={heroP}>
           All your notes, synced on all your devices.
           <br /> Get Note-Sharer and start shering notes with your friends.
         </p>
-        <button className={signUpButtonClass}>
+        <button className={heroButton}>
           <Link to="/register">Sign Up Now</Link>
         </button>
       </section>
 
-      <section className="min-h-[50vh] bg-gray-400 text-4xl text-center " >Section for image</section>
+      <section id="imgSection" className={imgSection}>
+        Section for image
+      </section>
 
-      <section className="min-h-[100vh] max-w-250 m-auto bg-cyan-700 text-2xl flex flex-col justify-center gap-12 item-center text-center text-yellow-300 font-semibold ">
-        <h1 className="text-5xl text-white" >Comprehensive underneath,<br/> simple on the surface</h1>
-        <ul className="grid h-[70%] md:h-[50%] grid-cols-3 px-6 gap-12" >
-          {
-            featureBox.map((item,ind)=> {
+      <section id="featureSection" className={featureSection} >
+        <div className={featureDiv}>
+          <h1 className="md:text-5xl text-lg text-[#eeeeee] shadow-lg p-5 shadow-black ">
+            Comprehensive underneath,
+            <br /> simple on the surface
+          </h1>
+          <ul className="grid h-[70%] md:h-[50%] grid-cols-3 px-6 gap-12">
+            {featureBox.map((item, ind) => {
               return (
                 <motion.li
-                  initial={{ opacity: 0, x:"50%", y:"20%" }}
-                  whileInView={{ opacity:1, x: 0 }}
-                  exit={{x:"50%"}}
+                  initial={{ opacity: 0, x: "50%", y: "20%" }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  exit={{ x: "50%" }}
                   transition={{ type: "spring", damping: 500, stiffness: 500 }}
-                  className="md:h-[25%] h-[40%] p-1 text-justify hover:bg-cyan-600 animation items-center duration-600 rounded-t-xl "
+                  className="md:h-[25%] bg-red-500 h-[40%] p-1 text-xs text-justify animation items-center duration-600 rounded-t-xl hover:bg-cyan-600 "
                   key={`list-${ind}`}
                 >
-                  <h5 className="text-white md:text-2xl text-lg text-center ">
+                  <h5 className="text-white md:text-xl lg:text-2xl sm:text-sm text-center ">
                     {item.h5}
                   </h5>
-                  <p className="text-yellow-200 md:text-lg text-sm hover:bg-cyan-800 h-[12.5vh] rounded-b-xl px-2 ">
+                  <p className="text-yellow-200 bg-linear-to-br from-green-600 via-black to-violet-700 md:text-lg text-xs hover:bg-cyan-800 md:h-50 md:text-center h-[300%] rounded-b-xl px-2 ">
                     {item.p}
                   </p>
                 </motion.li>
               );
-            })
-          }
-        </ul>
+            })}
+          </ul>
+        </div>
       </section>
 
-      <section>
+      <section id="feedBack" className={feedBack}>
         <h1>What people are Saying</h1>
         <ul>
           <li>
@@ -147,7 +167,7 @@ export default function MainPage():JSX.Element {
           </li>
         </ul>
       </section>
-      
+
       <Footer />
     </main>
   );
