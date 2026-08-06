@@ -1,4 +1,4 @@
-import { Tally1, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Link } from "react-router";
 import { useState } from 'react';
 import {motion} from 'motion/react';
@@ -8,8 +8,8 @@ export default function Header() {
   const linkClass =
     "rounded-xl p-1 shadow-black transition duration-300 hover:-translate-y-1 hover:border-2 hover:border-blue-300 hover:shadow-lg";
     return (
-      <header className="flex border-3 p-3 static bg-[#dfdfdf] border-yellow-300 justify-between rounde-xl lg:p-6 ">
-        <h1 className="ml-3 text-3xl text-pink-800 shadow-black rounded-xl p-3 font-bold shadow-2xl">
+      <header className="flex p-3 static bg-[#dfdfdf] justify-between rounde-xl lg:p-6 ">
+        <h1 className="md:ml-3 text-3xl text-pink-800 shadow-black rounded-xl p-3 font-bold shadow-2xl">
           Note-Sharer
         </h1>
 
@@ -26,7 +26,7 @@ export default function Header() {
           <Link to="#blog" className={linkClass}>
             Blog
           </Link>
-          <Tally1 />
+          <div className="border h-8 mx-1"></div>
           <Link to="/login" className={linkClass}>
             Login
           </Link>
@@ -36,11 +36,11 @@ export default function Header() {
         </nav>
 
         {/* When Screen size is Small*/}
-        <div className="md:hidden animation mr-6 duration-500 delay-500 ">
+        <div className="md:hidden animation mr-6 mt-4 duration-500 delay-500 ">
           {!visible ? (
-            <Menu onClick={() => setVisible((prev) => !prev)} size={33} />
+            <Menu onClick={() => setVisible((prev) => !prev)} size={23} />
           ) : (
-            <X onClick={() => setVisible((prev) => !prev)} size={30} />
+            <X onClick={() => setVisible((prev) => !prev)} size={20} />
           )}
         </div>
         {visible && (
@@ -63,11 +63,11 @@ export default function Header() {
             <Link to="#blog" className={linkClass}>
               Blog
             </Link>
-            <nav className="flex gap-12">
+            <nav className="flex md:gap-12 items-center justify-center gap-2">
               <Link to="/login" className={`${linkClass} border py-2 px-5`}>
                 Login
               </Link>
-              <Tally1 size={40} className="relative left-4" />
+              <div className="border-2 h-10 mx-3"></div>
               <Link to="/register" className={`${linkClass} border py-2 px-5`}>
                 Register
               </Link>
