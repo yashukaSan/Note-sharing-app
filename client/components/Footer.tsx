@@ -33,7 +33,7 @@ export default function Footer(){
 
   ]
     return (
-      <footer className="rounded-xl font-serif text-xs md:text-lg py-10 mt-5 bg-linear-to-t from-blue-500 to-red-500 dark:bg-linear-to-tr dark:from-purple-500 dark:to-black dark:text-yellow-200 grid items-center justify-center text-center ">
+      <footer className="rounded-xl text-white font-serif text-xs md:text-lg py-10 mt-5 bg-linear-to-t from-blue-500 to-red-500 dark:bg-linear-to-tr dark:from-purple-500 dark:to-black dark:text-yellow-200 grid items-center justify-center text-center ">
         <ul className='grid'> 
           {
             links.map((item, ind)=> {
