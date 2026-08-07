@@ -1,19 +1,24 @@
 import { Link } from "react-router";
 import Header from './Header.tsx';
 import Footer from './Footer.tsx';
-import type {JSX} from 'react';
+import {type JSX, useState} from 'react';
 import { motion, useScroll, useMotionValueEvent } from "motion/react";
-import { useState } from "react";
 import Typewriter from 'typewriter-effect';
 
 type FeatureBox ={
   h5: string, 
   p: string
 };
+type PeopleSec = {
+  p: string,
+  span: string
+}
 
 export default function MainPage():JSX.Element {
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
+  const [isHover, setIsHover] = useState(false);
+  const [indNum, setIndNum] = useState(NaN);
 
   useMotionValueEvent(scrollY, "change", (current) => {
     const prev = scrollY.getPrevious() ?? 0;
@@ -48,6 +53,23 @@ export default function MainPage():JSX.Element {
     {
       h5: "It's Free",
       p: "Apps, backups, syncing, sharing - it's all completely free.",
+    },
+  ];
+  const peopleSec: PeopleSec[] = [
+    {
+      p: "If you're not using Note-Sharer, you're missing out.",
+      span: "TechCrunch",
+    },
+    {
+      p: `If you're looking foa a cross-platform note-taking tool with
+      just enough frills, it's hard to look beyound Note-Sharer.
+`,
+      span: "MacWorld",
+    },
+    {
+      p: `If you want a truly distraction-free environment then you
+      can't do better than Note-Sharer for your note-taking needs.`,
+      span: "Zapier",
     },
   ];
 ;
@@ -129,7 +151,7 @@ export default function MainPage():JSX.Element {
             Comprehensive underneath,
             <br /> simple on the surface
           </h1>
-          <ul className="grid min-h-150 border md:h-[50%] grid-cols-3 px-6 md:gap-12 gap-1 ">
+          <ul className="grid min-h-150 md:h-[50%] grid-cols-3 px-6 md:gap-12 gap-1 ">
             {featureBox.map((item, ind) => {
               return (
                 <motion.li
@@ -137,14 +159,13 @@ export default function MainPage():JSX.Element {
                   whileInView={{ opacity: 1, x: 0 }}
                   exit={{ x: "50%" }}
                   transition={{ type: "spring", damping: 500, stiffness: 500 }}
-                  className=
-                  "md:h-[25%] mb-2 bg-red-500 h-20 p-1 text-xs text-justify animation items-center duration-600 rounded-t-xl hover:bg-cyan-600 "
+                  className="md:h-[25%] mb-2 bg-red-500 h-20 p-1 text-xs text-justify animation items-center duration-600 rounded-t-xl hover:bg-cyan-600 "
                   key={`list-${ind}`}
                 >
                   <h5 className="text-white h-7 md:text-xl z-100 lg:text-2xl sm:text-sm text-center ">
                     {item.h5}
                   </h5>
-                  <p className="relative break-all bp-1 md:m-0 mt-4 text-yellow-200 bg-linear-to-br from-green-600 via-black to-violet-700 md:text-lg text-[9px] hover:bg-cyan-800 md:h-50 md:text-center h-50 rounded-b-xl px-2 ">
+                  <p className="relative pt-3 break-all bp-1 md:m-0 mt-4 text-yellow-200 bg-linear-to-br from-green-600 via-black to-violet-700 md:text-lg text-[9px] hover:bg-cyan-800 md:h-50 md:text-center h-50 rounded-b-xl px-2 ">
                     {item.p}
                   </p>
                 </motion.li>
@@ -156,30 +177,41 @@ export default function MainPage():JSX.Element {
 
       <section
         id="feedBack"
-        className={`min-h-screen flex justify-center items-center text-center text-2xl text-black`}
+        className={`min-h-[90vh] flex flex-col gap-15 justify-around items-center
+           text-center text-2xl overflow-hidden text-black `}
       >
-        <h1>What people are Saying</h1>
-        <ul>
-          <li>
-            <p>
-              If you&apos;re not using Note-Sharer, you&apos;re missing out.
-              <span>TechCrunch</span>
-            </p>
-          </li>
-          <li>
-            <p>
-              If you&apos;re looking foa a cross-platform note-taking tool with
-              just enough frills, it&apos; hard to look beyound Note-Sharer.
-              <span>MacWorld</span>
-            </p>
-          </li>
-          <li>
-            <p>
-              If you want a truly distraction-free environment then you
-              can&apos;t do better than Note-Sharer for your note-taking needs.
-              <span>Zapier</span>
-            </p>
-          </li>
+        <h1 className="font-bold text-3xl md:text-6xl mt-12 text-cyan-400 shadow-2xl drop-shadow-[0_5px_5px_rgba(50,10,10,1)] shadow-yellow-400 ">
+          What people are Saying
+        </h1>
+        <ul className="grid grid-cols-1 items-center lg:mx-12 justify-between md:grid-cols-2 lg:grid-cols-3 gap-2 align-center ">
+          {peopleSec.map((item, ind) => (
+            <li
+              key={item.span}
+              className={` h-80 max-w-120 px-10 rounded-4xl mx-4 overflow-y-auto flex flex-col justify-around 
+                bg-linear-to-br from-blue-400 to-green-400 border-5 border-cyan-700 hover:border-cyan-500 `}
+              onMouseEnter={() => {
+                setIsHover(true);
+                setIndNum(ind);
+              }}
+              onMouseLeave={() => {
+                setIsHover(false);
+                setIndNum(NaN);
+              }}
+            >
+              <p
+                className={
+                  isHover && indNum === ind ? "font-semibold text-yellow-200" : ""
+                }
+              >
+                {item.p}
+              </p>
+              <span
+                className={indNum !== ind ? "text-gray-300" : "text-[#ffffff]"}
+              >
+                {item.span}
+              </span>
+            </li>
+          ))}
         </ul>
       </section>
 
