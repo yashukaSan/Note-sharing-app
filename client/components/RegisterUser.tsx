@@ -7,7 +7,7 @@ export default function RegisterUser() {
   return (
     <section className="py-12 overflow-hidden bg-blue-600 min-h-screen flex items-center justify-center dark:bg-[#191919] ">
       <form className="flex rounded-3xl flex-col gap-5 justify-center items-center border-[#fe2e9e] text-white border-6 min-w-60 h-full p-8">
-        <h1 className="md:text-4xl text-xl bg-red-400 min-w-50 w-[40%] text-center p-3 rounded-4xl font-mono ">
+        <h1 className="md:text-4xl text-xl bg-red-400 min-w-50 w-full text-center p-3 rounded-4xl font-mono ">
           Registration
         </h1>
         <label className="border-l-red-400 border-t-red-400 border-r-blue-500 border-b-blue-500 border-3 p-2 w-full rounded-xl grid grid-cols-2 justify-around items-center gap-4 md:gap-10 ">
