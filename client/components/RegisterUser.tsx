@@ -19,6 +19,14 @@ export default function RegisterUser() {
           />
         </label>
         <label className="border-l-red-400 border-t-red-400 border-r-blue-500 border-b-blue-500 border-3 p-2 w-full rounded-xl grid grid-cols-2 justify-around items-center gap-4 md:gap-10 ">
+          <span>E-Mail: </span>
+          <input
+            type="text"
+            placeholder="e.g., JohnDoe@email.com"
+            className="hover:bg-[#4d4d4d] rounded-xl text-center p-1"
+          />
+        </label>
+        <label className="border-l-red-400 border-t-red-400 border-r-blue-500 border-b-blue-500 border-3 p-2 w-full rounded-xl grid grid-cols-2 justify-around items-center gap-4 md:gap-10 ">
           <span>Username: </span>
           <input
             type="text"
@@ -28,30 +36,29 @@ export default function RegisterUser() {
         </label>
         <label className="border-l-red-400 border-t-red-400 border-r-blue-500 border-b-blue-500 border-3 p-2 w-full rounded-xl grid grid-cols-[1fr_2fr] justify-around items-center gap-4 md:gap-10 ">
           <span>password: </span>
-          
-            <input
-              type={showPass ? "text" : "password"}
-              placeholder="e.g., 12345678"
-              className="hover:bg-[#3d3d3d] w-full text-center text=xs rounded-lg p-1 "
-            />
-            <button className="hover:bg-[#dfdfdf] hover:text-black text-[#efdfef] rounded-full">
-              {showPass ? (
-                <Eye
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setShowPass(false);
-                  }}
-                />
-              ) : (
-                <EyeClosed
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setShowPass(true);
-                  }}
-                />
-              )}
-            </button>
-          
+
+          <input
+            type={showPass ? "text" : "password"}
+            placeholder="e.g., 12345678"
+            className="hover:bg-[#3d3d3d] w-full text-center text=xs rounded-lg p-1 "
+          />
+          <button className="hover:bg-[#dfdfdf] hover:text-black text-[#efdfef] rounded-full">
+            {showPass ? (
+              <Eye
+                onClick={(e) => {
+                  e.preventDefault();
+                  setShowPass(false);
+                }}
+              />
+            ) : (
+              <EyeClosed
+                onClick={(e) => {
+                  e.preventDefault();
+                  setShowPass(true);
+                }}
+              />
+            )}
+          </button>
         </label>
         <button
           type="submit"
