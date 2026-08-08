@@ -7,7 +7,9 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "playwright test --ui"
+    "test": "playwright test --ui",
+    "start": "tsc && node dist/index.js",
+    "dev": "tsx watch src/index.js"
   },
   "dependencies": {
     "@types/express": "^5.0.6",
@@ -17,5 +19,11 @@
     "express": "^5.2.1",
     "mongoose": "^9.8.1",
     "playwright": "^1.62.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/node": "^26.2.0",
+    "tsx": "^4.23.11",
+    "typescript": "^7.0.2"
   }
 }
