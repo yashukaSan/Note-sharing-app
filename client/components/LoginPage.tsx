@@ -2,9 +2,57 @@ import { Eye, EyeClosed } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router';
 
+interface userType {
+  Uemail?: string|null,
+  userName?: string|null,
+  password: string
+}
+
 export default function LoginPage(){
     const [ showPass, setShowPass ] = useState(false);
     const [loginViaEmail, setLoginViaEmail] = useState(false);
+
+    const [userData, setUserData] = useState<userType>(); 
+
+    function addData(){
+      const userEmail = document?.querySelector('#userEmail') as HTMLInputElement;
+      const userName = document?.querySelector('#username') as HTMLInputElement;
+      const password = document.querySelector('#password') as HTMLInputElement;
+
+      console.log("userEmail: ", userEmail.value, "userName: ", userName.value, password?.value)
+      if((userEmail || userName) && password){
+       
+      setUserData({Uemail: userEmail.value, userName: userName.value, password: password.value});
+      if(!userData) return;
+      sendData(userData);
+      console.log('sending Data');
+      }
+      
+      
+    }
+
+    async function sendData(data: userType){
+      console.log("sendData Called");
+       const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': "application-json",
+        },
+        body: JSON.stringify({ data })
+       });
+       console.log('response created');
+       if(response.ok){
+        const data = await response.json();
+        console.log('Success: ', data);
+
+        setUserData({Uemail:"", userName: "", password:""});
+       }
+       else{
+        console.error('Failed to send request');
+       }
+       
+    }
+
     return (
       <>
         <section className="py-12 overflow-hidden bg-blue-600 min-h-screen flex items-center justify-center dark:bg-[#191919] ">
@@ -16,15 +64,18 @@ export default function LoginPage(){
               <label className="border-l-red-400 border-t-red-400 border-r-blue-500 border-b-blue-500 border-3 grid grid-cols-2 p-2 w-full xl:w-[45%] rounded-xl justify-around items-center 10 ">
                 Email:
                 <input
-                  type="text"
+                  id="userEmail"
+                  type="email"
                   placeholder="e.g., johndoe@example.com"
                   className="hover:bg-[#4d4d4d] rounded-xl text-center p-1"
+                  required
                 />
               </label>
             ) : (
               <label className="border-l-red-400 border-t-red-400 border-r-blue-500 border-b-blue-500 border-3 grid grid-cols-2 p-2 w-full xl:w-[45%] rounded-xl justify-around items-center 10 ">
                 Username:
                 <input
+                  id="username"
                   type="text"
                   placeholder="e.g., John Doe"
                   className="hover:bg-[#4d4d4d] rounded-xl text-center p-1"
@@ -34,6 +85,7 @@ export default function LoginPage(){
             <label className="border-l-red-400 border-t-red-400 border-r-blue-500 border-b-blue-500 border-3 p-2 w-full rounded-xl grid grid-cols-2 justify-around items-center gap-4 md:gap-10 ">
               Password:
               <input
+                id="password"
                 type={showPass ? "text" : "password"}
                 placeholder="e.g., 12345678"
                 className="hover:bg-[#3d3d3d] text-center rounded-lg p-1 "
@@ -59,6 +111,7 @@ export default function LoginPage(){
             <button
               type="submit"
               className="border-2 w-full max-w-lg rounded-xl p-2 hover:p-[2.7px] hover:font-bold hover:text-lg border-t-purple-400 border-l-yellow-400 border-b-yellow-500 border-r-purple-500 hover:bg-linear-to-tr from-purple-700 to-yellow-600 hover:border-4"
+              onClick={(e)=>{e.preventDefault(); addData(); console.log('button clicked')}}
             >
               LOGIN
             </button>
