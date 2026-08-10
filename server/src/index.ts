@@ -17,11 +17,6 @@ const startServer = async () =>{
         console.log('STARTING....')
         await connectDB();
 
-        // app.on("error", (error) => {
-        //     console.log("ERROR");
-        //     throw error;
-        // });
-
         app.listen(process.env.PORT || 8000, ()=>{
             app.get('/', (req:Request, res: Response)=>{
                 res.send('hellow');
