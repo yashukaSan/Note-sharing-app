@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { Link } from 'react-router';
 
 interface userType {
-  Uemail?: string|null,
-  userName?: string|null,
+  Uemail?: string | null,
+  username?: string | null,
   password: string
 }
 
@@ -15,20 +15,21 @@ export default function LoginPage(){
     const [userData, setUserData] = useState<userType>(); 
 
     function addData(){
-      const userEmail = document?.querySelector('#userEmail') as HTMLInputElement;
-      const userName = document?.querySelector('#username') as HTMLInputElement;
-      const password = document.querySelector('#password') as HTMLInputElement;
+      const userEmail = document?.querySelector('#userEmail') as HTMLInputElement | null;
+      const userName = document?.querySelector('#username') as HTMLInputElement | null;
+      const password = document.querySelector('#password') as HTMLInputElement | null;
 
-      console.log("userEmail: ", userEmail.value, "userName: ", userName.value, password?.value)
-      if((userEmail || userName) && password){
-       
-      setUserData({Uemail: userEmail.value, userName: userName.value, password: password.value});
-      if(!userData) return;
-      sendData(userData);
-      console.log('sending Data');
-      }
-      
-      
+      if (!password) return;
+
+      const payload: userType = {
+        password: password.value,
+        ...(loginViaEmail
+          ? { Uemail: userEmail?.value?.trim() ?? '' }
+          : { username: userName?.value?.trim() ?? '' }),
+      };
+
+      setUserData(payload);
+      sendData(payload);
     }
 
     async function sendData(data: userType){
@@ -36,16 +37,17 @@ export default function LoginPage(){
        const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {
-          'Content-Type': "application-json",
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ data })
+        credentials: 'include',
+        body: JSON.stringify(data)
        });
        console.log('response created');
        if(response.ok){
-        const data = await response.json();
-        console.log('Success: ', data);
+        const responseData = await response.json();
+        console.log('Success: ', responseData);
 
-        setUserData({Uemail:"", userName: "", password:""});
+        setUserData({ Uemail: '', username: '', password: '' });
        }
        else{
         console.error('Failed to send request');
