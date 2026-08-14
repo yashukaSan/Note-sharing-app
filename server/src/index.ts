@@ -17,11 +17,13 @@ const startServer = async () =>{
         console.log('STARTING....')
         await connectDB();
 
-        app.listen(process.env.PORT || 8000, ()=>{
+        const port = Number(process.env.PORT) || 8080;
+
+        app.listen(port, ()=>{
             app.get('/', (req:Request, res: Response)=>{
                 res.send('hellow');
             })
-            console.log(`Server is running on port: ${process.env.PORT}`);
+            console.log(`Server is running on port: ${port}`);
         })
     }
     catch(err){
