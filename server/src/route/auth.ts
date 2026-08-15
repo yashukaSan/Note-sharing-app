@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { User, IUser } from '../models/user.model';
 
-const router: Router = express.Router();
+const  router: Router = express.Router();
 
 // Shape of the data expected in each request body
 interface RegisterBody {
@@ -52,21 +52,27 @@ router.post('/register', async (req: Request<{}, {}, RegisterBody>, res: Respons
 
 router.post('/login', async (req: Request<{}, {}, LoginBody>, res: Response) => {
     try {
-        const { Uemail, username, password } = req.body;
 
-        if (!Uemail && !username) {
+        const uemail = req.body.Uemail;
+        const username = req.body.username;
+        const passwd = req.body.password;
+
+        if (!uemail && !username) {
             return res.status(400).json({ message: 'Email or username is required' });
         }
+        if(!passwd) return res.status(400).json({ message : "Password Required" });
 
-        const user: IUser | null = Uemail
-            ? await User.findOne({ Uemail })
-            : await User.findOne({ username });
+        console.log("Uemail: ", uemail, !!uemail, "\nUSERNAME: ", !!username, username, "\nPASSWORD:", passwd);
+        const user: IUser | null = !!username
+            ? await User.findOne({ username: username })
+            : await User.findOne({ Uemail: uemail });
 
+            console.log(user);
         if (!user) {
             return res.status(400).json({ message: 'Invalid user' });
         }
 
-        const isMatch = await bcrypt.compare(password, user.password);
+        const isMatch = await bcrypt.compare(passwd, user.password);
         if (!isMatch) {
             return res.status(400).json({ message: 'Invalid password' });
         }
