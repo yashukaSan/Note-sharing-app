@@ -12,8 +12,6 @@ export default function LoginPage(){
     const [ showPass, setShowPass ] = useState(false);
     const [loginViaEmail, setLoginViaEmail] = useState(false);
 
-    const [userData, setUserData] = useState<userType>(); 
-
     function addData(){
       const userEmail = document?.querySelector('#userEmail') as HTMLInputElement | null;
       const userName = document?.querySelector('#username') as HTMLInputElement | null;
@@ -28,30 +26,33 @@ export default function LoginPage(){
           : { username: userName?.value?.trim() ?? '' }),
       };
 
-      setUserData(payload);
       sendData(payload);
     }
 
     async function sendData(data: userType){
-      console.log("sendData Called");
-       const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify(data)
+      try{
+        console.log("sendData Called");
+       const response = await fetch("/api/auth/login", {
+         method: "POST",
+         headers: {
+           "Content-Type": "application/json",
+         },
+         credentials: "include",
+         body: JSON.stringify(data),
        });
        console.log('response created');
-       if(response.ok){
-        const responseData = await response.json();
-        console.log('Success: ', responseData);
-
-        setUserData({ Uemail: '', username: '', password: '' });
+       if (response.ok) {
+         console.log("response ok");
+         const responseData = await response.json();
+         console.log("Success: ", responseData);
+       } else {
+         console.error("Failed to send request");
        }
-       else{
-        console.error('Failed to send request');
-       }
+      }
+      catch(err){
+        console.log(err);
+        console.error(err);
+      }
        
     }
 
@@ -68,6 +69,7 @@ export default function LoginPage(){
                 <input
                   id="userEmail"
                   type="email"
+                  autoComplete="email"
                   placeholder="e.g., johndoe@example.com"
                   className="hover:bg-[#4d4d4d] rounded-xl text-center p-1"
                   required
@@ -80,6 +82,7 @@ export default function LoginPage(){
                   id="username"
                   type="text"
                   placeholder="e.g., John Doe"
+                  autoComplete="username"
                   className="hover:bg-[#4d4d4d] rounded-xl text-center p-1"
                 />
               </label>
@@ -88,6 +91,7 @@ export default function LoginPage(){
               Password:
               <input
                 id="password"
+                autoComplete="current-password"
                 type={showPass ? "text" : "password"}
                 placeholder="e.g., 12345678"
                 className="hover:bg-[#3d3d3d] text-center rounded-lg p-1 "
