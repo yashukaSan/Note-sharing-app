@@ -1,6 +1,7 @@
 import { Eye, EyeClosed } from "lucide-react";
 import { useState } from "react";
 import { Link } from 'react-router';
+import { useNavigate } from 'react-router';
 
 interface userType{
   Uname: string,
@@ -11,6 +12,7 @@ interface userType{
 
 export default function RegisterUser() {
   const [showPass, setShowPass] = useState(false);
+  const navigator = useNavigate();
 
   async function handleSubmission(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -42,6 +44,8 @@ export default function RegisterUser() {
       if(response.ok){
         const result = await response.json();
         console.log('Success', result);
+        localStorage.setItem('token', result.token);
+        navigator("/success");
 
         name.value="";
         email.value="";
