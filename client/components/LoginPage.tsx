@@ -1,6 +1,7 @@
 import { Eye, EyeClosed } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router';
+import { useNavigate } from 'react-router';
 
 interface userType {
   Uemail?: string | null,
@@ -11,6 +12,7 @@ interface userType {
 export default function LoginPage(){
     const [ showPass, setShowPass ] = useState(false);
     const [loginViaEmail, setLoginViaEmail] = useState(false);
+    const navigate = useNavigate();
 
     function addData(){
       const userEmail = document?.querySelector('#userEmail') as HTMLInputElement | null;
@@ -44,7 +46,9 @@ export default function LoginPage(){
        if (response.ok) {
          console.log("response ok");
          const responseData = await response.json();
-         console.log("Success: ", responseData);
+         localStorage.setItem('token', responseData.token)
+         navigate("/success");
+         
        } else {
          console.error("Failed to send request");
        }
@@ -59,7 +63,10 @@ export default function LoginPage(){
     return (
       <>
         <section className="py-12 overflow-hidden bg-blue-600 min-h-screen flex items-center justify-center dark:bg-[#191919] ">
-          <form className="flex rounded-3xl flex-col gap-5 justify-center items-center border-[#fe2e9e] text-white border-6 min-w-60 h-full p-8">
+          <form 
+           className="flex rounded-3xl flex-col gap-5 justify-center items-center border-[#fe2e9e] text-white border-6 min-w-60 h-full p-8"
+           onSubmit={(e)=>{e.preventDefault(); addData();}}
+           >
             <h1 className=" font-serif md:text-3xl text-xl bg-linear-to-l py-2 px-10 w-full text-center rounded-2xl border-3 border-yellow-400 from-blue-300 to-red-400 ">
               Welcome Back
             </h1>
