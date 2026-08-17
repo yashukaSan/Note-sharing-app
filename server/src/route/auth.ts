@@ -37,13 +37,13 @@ router.post('/register', async (req: Request<{}, {}, RegisterBody>, res: Respons
             return res.status(400).json({ message: 'Username already exists!' });
         }
 
-        const salt = await bcrypt.genSalt(10);
-        const hashPass = await bcrypt.hash(password, salt);
-
-        const newUser = new User({ Uname, Uemail, username, password: hashPass });
+        const newUser = new User({ Uname, Uemail, username, password: password });
         await newUser.save();
 
-        return res.status(201).json({ message: 'User registered successfully' });
+
+        const token = jwt.sign({ id: newUser.username }, `${process.env.JWT_SECRET}`, {expiresIn: '7d'} )
+
+        return res.status(201).json({ token, message: 'User registered successfully' });
     } catch (err) {
         const message = err instanceof Error ? err.message : 'Unknown error';
         return res.status(500).json({ message: 'Server error', error: message });
@@ -72,7 +72,7 @@ router.post('/login', async (req: Request<{}, {}, LoginBody>, res: Response) => 
             return res.status(400).json({ message: 'Invalid user' });
         }
 
-        const isMatch = await bcrypt.compare(passwd, user.password);
+        const isMatch = await user.comparePassword(passwd);
         if (!isMatch) {
             return res.status(400).json({ message: 'Invalid password' });
         }
