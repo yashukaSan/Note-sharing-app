@@ -40,8 +40,8 @@ router.post('/register', async (req: Request<{}, {}, RegisterBody>, res: Respons
         const newUser = new User({ Uname, Uemail, username, password: password });
         await newUser.save();
 
-
-        const token = jwt.sign({ id: newUser.username }, `${process.env.JWT_SECRET}`, {expiresIn: '7d'} )
+        const jwtSecret:string = process.env.JWT_SECRET!;
+        const token = jwt.sign({ id: newUser.username }, jwtSecret, {expiresIn: '7d'} )
 
         return res.status(201).json({ token, message: 'User registered successfully' });
     } catch (err) {
@@ -96,6 +96,7 @@ router.post('/login', async (req: Request<{}, {}, LoginBody>, res: Response) => 
         });
 
         return res.status(200).json({
+            token,
             message: 'Login success',
             user: {
                 id: user._id,
