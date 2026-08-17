@@ -1,10 +1,10 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from "./App.tsx";
+import App from './App.tsx';
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router";
 import ProtectedRoute from "../components/protectedMain";
-import MainPage from "../components/LandingPage";
+import MainPage from "../components/MainPage";
 import "./App.css";
 import LoginPage from "../components/LoginPage";
 import RegisterPage from "../components/RegisterUser";
