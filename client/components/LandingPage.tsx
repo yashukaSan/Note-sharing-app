@@ -14,7 +14,7 @@ type PeopleSec = {
   span: string
 }
 
-export default function MainPage():JSX.Element {
+export default function LandingPage():JSX.Element {
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [isHover, setIsHover] = useState(false);
