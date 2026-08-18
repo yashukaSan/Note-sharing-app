@@ -45,7 +45,7 @@ export default function Header() {
         </div>
         {visible && (
           <motion.nav
-            className="grid fixed h-[500%] text-xl bg-[#dfdfdf] justify-center w-[99%] -ml-3 border-x-12 mt-18 gap-4 p-6 items-center md:hidden border-black border-3 rounded-xl text-pink-500 font-semibold text-center "
+            className="grid fixed h-100 text-xl bg-[#dfdfdf] justify-center w-[99%] -ml-3 border-x-12 mt-18 gap-4 p-6 items-center md:hidden border-black border-3 rounded-xl text-pink-500 font-semibold text-center "
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
