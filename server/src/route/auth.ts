@@ -40,10 +40,11 @@ router.post('/register', async (req: Request<{}, {}, RegisterBody>, res: Respons
         const newUser = new User({ Uname, Uemail, username, password: password });
         await newUser.save();
 
+        const name:string = newUser.Uname;
         const jwtSecret:string = process.env.JWT_SECRET!;
         const token = jwt.sign({ id: newUser.username }, jwtSecret, {expiresIn: '7d'} )
 
-        return res.status(201).json({ token, message: 'User registered successfully' });
+        return res.status(201).json({ token, name, message: 'User registered successfully' });
     } catch (err) {
         const message = err instanceof Error ? err.message : 'Unknown error';
         return res.status(500).json({ message: 'Server error', error: message });
@@ -95,8 +96,10 @@ router.post('/login', async (req: Request<{}, {}, LoginBody>, res: Response) => 
             maxAge: 7 * 24 * 60 * 60 * 1000,
         });
 
+        const name = user.Uname;
         return res.status(200).json({
             token,
+            name,
             message: 'Login success',
             user: {
                 id: user._id,
