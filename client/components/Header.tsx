@@ -8,12 +8,12 @@ export default function Header() {
   const linkClass =
     "rounded-xl p-1 shadow-black transition duration-300 hover:-translate-y-1 hover:border-2 hover:border-blue-300 hover:shadow-lg";
     return (
-      <header className="flex p-3 static bg-[#dfdfdf] justify-between rounde-xl lg:p-6 ">
-        <h1 className="md:ml-3 text-3xl text-pink-800 shadow-black rounded-xl p-3 font-bold shadow-2xl">
+      <header className="flex p-3 static bg-[#dfdfdf] justify-between rounde-xl lg:p-6 bg-linear-to-tr from-pink-700 via-[#ddc9ab] to-blue-700 dark:from-[#765221] dark:via-[#b0470d] dark:to-[#765221] ">
+        <h1 className="md:ml-3 bg-blac dark:bg-black hover:dark:bg-[#303030] hover:dark:text-red-300 text-3xl text-pink-500 shadow-black rounded-xl p-3 font-bold shadow-2xl cursor-pointer ">
           Note-Sharer
         </h1>
 
-        <nav className="justify-around w-[60%] items-center border-[#adadad] bg-[#dadada] border-3 rounded-xl text-pink-500 font-semibold lg:w-[50%] xl:text-xl hidden md:flex">
+        <nav className="justify-around w-[60%] items-center border-[#adadad] bg-[#dadada] border-3 border-x-6 rounded-xl text-pink-500  font-semibold lg:w-[50%] xl:text-xl hidden md:flex bg-linear-to-t from-cyan-400 via-white to-cyan-400 dark:from-red-500 dark:to-red-500 dark:via-black dark:text-cyan-300 ">
           <Link to="#contact-us" className={linkClass}>
             Contact Us
           </Link>
@@ -45,7 +45,7 @@ export default function Header() {
         </div>
         {visible && (
           <motion.nav
-            className="grid fixed h-100 text-xl bg-[#dfdfdf] justify-center w-[99%] -ml-3 border-x-12 mt-18 gap-4 p-6 items-center md:hidden border-black border-3 rounded-xl text-pink-500 font-semibold text-center "
+            className="grid fixed h-100 text-xl bg-[#dfdfdf] justify-center w-[99%] -ml-3 border-x-12 mt-18 gap-4 p-6 items-center md:hidden border-black border-3 rounded-xl text-pink-500 font-semibold text-center bg-linear-to-l from-cyan-400 via-white to-cyan-400 dark:from-red-500 dark:to-red-500 dark:via-black dark:text-cyan-300  "
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
