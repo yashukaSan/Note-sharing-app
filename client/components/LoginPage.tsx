@@ -46,7 +46,8 @@ export default function LoginPage(){
        if (response.ok) {
          console.log("response ok");
          const responseData = await response.json();
-         localStorage.setItem('token', responseData.token)
+         localStorage.setItem('token', responseData.token);
+         localStorage.setItem("name", responseData.name);
          navigate("/success");
          
        } else {

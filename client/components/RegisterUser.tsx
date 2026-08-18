@@ -14,7 +14,7 @@ export default function RegisterUser() {
   const [showPass, setShowPass] = useState(false);
   const navigator = useNavigate();
 
-  async function handleSubmission(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmission(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
 
     const name = document.getElementById("Uname") as HTMLInputElement;
@@ -45,6 +45,8 @@ export default function RegisterUser() {
         const result = await response.json();
         console.log('Success', result);
         localStorage.setItem('token', result.token);
+        localStorage.setItem("name", result.name);
+
         navigator("/success");
 
         name.value="";
