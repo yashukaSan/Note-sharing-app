@@ -63,11 +63,20 @@ export default function LoginPage(){
 
     return (
       <>
+        <Link to="/" id="home-link">
+          <h1 className="md:ml-3 fixed mt-10 ml-10 bg-blac dark:bg-black hover:dark:bg-[#303030] hover:dark:text-red-300 text-3xl text-pink-500 shadow-black rounded-xl p-3 font-bold shadow-2xl cursor-pointer ">
+            Note-Sharer
+          </h1>
+        </Link>
+
         <section className="py-12 overflow-hidden bg-blue-600 min-h-screen flex items-center justify-center dark:bg-[#191919] ">
-          <form 
-           className="flex rounded-3xl flex-col gap-5 justify-center items-center border-[#fe2e9e] text-white border-6 min-w-60 h-full p-8"
-           onSubmit={(e)=>{e.preventDefault(); addData();}}
-           >
+          <form
+            className="flex rounded-3xl flex-col gap-5 justify-center items-center border-[#fe2e9e] text-white border-6 min-w-60 h-full p-8"
+            onSubmit={(e) => {
+              e.preventDefault();
+              addData();
+            }}
+          >
             <h1 className=" font-serif md:text-3xl text-xl bg-linear-to-l py-2 px-10 w-full text-center rounded-2xl border-3 border-yellow-400 from-blue-300 to-red-400 ">
               Welcome Back
             </h1>
@@ -125,7 +134,11 @@ export default function LoginPage(){
             <button
               type="submit"
               className="border-2 w-full max-w-lg rounded-xl p-2 hover:p-[2.7px] hover:font-bold hover:text-lg border-t-purple-400 border-l-yellow-400 border-b-yellow-500 border-r-purple-500 hover:bg-linear-to-tr from-purple-700 to-yellow-600 hover:border-4"
-              onClick={(e)=>{e.preventDefault(); addData(); console.log('button clicked')}}
+              onClick={(e) => {
+                e.preventDefault();
+                addData();
+                console.log("button clicked");
+              }}
             >
               LOGIN
             </button>

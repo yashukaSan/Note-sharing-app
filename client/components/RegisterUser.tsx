@@ -63,76 +63,97 @@ export default function RegisterUser() {
   }
 
   return (
-    <section className="py-12 overflow-hidden bg-blue-600 min-h-screen flex items-center justify-center dark:bg-[#191919] ">
-      <form
-        className="flex rounded-3xl flex-col gap-5 justify-center items-center border-[#fe2e9e] text-white border-6 min-w-60 h-full p-8"
-        onSubmit={handleSubmission}
-      >
-        <h1 className="md:text-4xl text-xl bg-red-400 min-w-50 w-full text-center p-3 rounded-4xl font-mono ">
-          Registration
+    <>
+      <Link to="/" id="home-link" >
+        <h1 className="md:ml-3 fixed mt-10 ml-10 lg:mt-20 lg:ml-20 lg:text-4xl bg-blac dark:bg-black hover:dark:bg-[#303030] hover:dark:text-red-300 text-3xl text-pink-500 shadow-black rounded-xl p-3 font-bold shadow-2xl cursor-pointer ">
+          Note-Sharer
         </h1>
-        <label htmlFor="Uname" className="border-l-red-400 border-t-red-400 border-r-blue-500 border-b-blue-500 border-3 p-2 w-full rounded-xl grid grid-cols-2 justify-around items-center gap-4 md:gap-10 ">
-          <span>Your Name:</span>
-          <input
-            id="Uname"
-            type="text"
-            name="name"
-            placeholder="e.g., John Doe"
-            className="hover:bg-[#4d4d4d] rounded-xl text-center p-1"
-            required
-          />
-        </label>
-        <label htmlFor="Uemail" className="border-l-red-400 border-t-red-400 border-r-blue-500 border-b-blue-500 border-3 p-2 w-full rounded-xl grid grid-cols-2 justify-around items-center gap-4 md:gap-10 ">
-          <span>E-Mail: </span>
-          <input
-            id="Uemail"
-            type="email"
-            name="email"
-            placeholder="e.g., JohnDoe@email.com"
-            className="hover:bg-[#4d4d4d] rounded-xl text-center p-1"
-            required
-          />
-        </label>
-        <label htmlFor="username" className="border-l-red-400 border-t-red-400 border-r-blue-500 border-b-blue-500 border-3 p-2 w-full rounded-xl grid grid-cols-2 justify-around items-center gap-4 md:gap-10 ">
-          <span>Username: </span>
-          <input
-            id="username"
-            type="text"
-            name="username"
-            placeholder="e.g., JohnDoe"
-            className="hover:bg-[#4d4d4d] rounded-xl text-center p-1"
-            required
-          />
-        </label>
-        <label htmlFor="password" className="border-l-red-400 border-t-red-400 border-r-blue-500 border-b-blue-500 border-3 p-2 w-full rounded-xl grid grid-cols-[1fr_2fr] justify-around items-center gap-4 md:gap-10 ">
-          <span>password: </span>
+      </Link>
 
-          <input
-            id="password"
-            name="password"
-            type={showPass ? "text" : "password"}
-            placeholder="e.g., 12345678"
-            className="hover:bg-[#3d3d3d] w-full text-center text=xs rounded-lg p-1 "
-            required
-          />
-          <button
-           type="button"
-           className="hover:bg-[#dfdfdf] hover:text-black text-[#efdfef] rounded-full"
-           onClick={() => setShowPass((prev)=>!prev)} >
-           {showPass ? <Eye /> : <EyeClosed/> }
-          </button>
-        </label>
-        <button
-          type="submit"
-          className="border-2 w-full rounded-xl p-2 hover:p-[2.7px] hover:font-bold hover:text-lg border-t-purple-400 border-l-yellow-400 border-b-yellow-500 border-r-purple-500 hover:bg-linear-to-tr from-purple-700 to-yellow-600 hover:border-4"
+      <section className="py-12 overflow-hidden bg-blue-600 min-h-screen flex items-center justify-center dark:bg-[#191919] ">
+        <form
+          className="flex rounded-3xl flex-col gap-5 justify-center items-center border-[#fe2e9e] text-white border-6 min-w-60 h-full p-8"
+          onSubmit={handleSubmission}
         >
-          Register
-        </button>
+          <h1 className="md:text-4xl text-xl bg-red-400 min-w-50 w-full text-center p-3 rounded-4xl font-mono ">
+            Registration
+          </h1>
+          <label
+            htmlFor="Uname"
+            className="border-l-red-400 border-t-red-400 border-r-blue-500 border-b-blue-500 border-3 p-2 w-full rounded-xl grid grid-cols-2 justify-around items-center gap-4 md:gap-10 "
+          >
+            <span>Your Name:</span>
+            <input
+              id="Uname"
+              type="text"
+              name="name"
+              placeholder="e.g., John Doe"
+              className="hover:bg-[#4d4d4d] rounded-xl text-center p-1"
+              required
+            />
+          </label>
+          <label
+            htmlFor="Uemail"
+            className="border-l-red-400 border-t-red-400 border-r-blue-500 border-b-blue-500 border-3 p-2 w-full rounded-xl grid grid-cols-2 justify-around items-center gap-4 md:gap-10 "
+          >
+            <span>E-Mail: </span>
+            <input
+              id="Uemail"
+              type="email"
+              name="email"
+              placeholder="e.g., JohnDoe@email.com"
+              className="hover:bg-[#4d4d4d] rounded-xl text-center p-1"
+              required
+            />
+          </label>
+          <label
+            htmlFor="username"
+            className="border-l-red-400 border-t-red-400 border-r-blue-500 border-b-blue-500 border-3 p-2 w-full rounded-xl grid grid-cols-2 justify-around items-center gap-4 md:gap-10 "
+          >
+            <span>Username: </span>
+            <input
+              id="username"
+              type="text"
+              name="username"
+              placeholder="e.g., JohnDoe"
+              className="hover:bg-[#4d4d4d] rounded-xl text-center p-1"
+              required
+            />
+          </label>
+          <label
+            htmlFor="password"
+            className="border-l-red-400 border-t-red-400 border-r-blue-500 border-b-blue-500 border-3 p-2 w-full rounded-xl grid grid-cols-[1fr_2fr] justify-around items-center gap-4 md:gap-10 "
+          >
+            <span>password: </span>
 
-        <nav className="underline hover:text-blue-400">
-          <Link to="/login">Already Registered</Link>
-        </nav>
-      </form>
-    </section>
+            <input
+              id="password"
+              name="password"
+              type={showPass ? "text" : "password"}
+              placeholder="e.g., 12345678"
+              className="hover:bg-[#3d3d3d] w-full text-center text=xs rounded-lg p-1 "
+              required
+            />
+            <button
+              type="button"
+              className="hover:bg-[#dfdfdf] hover:text-black text-[#efdfef] rounded-full"
+              onClick={() => setShowPass((prev) => !prev)}
+            >
+              {showPass ? <Eye /> : <EyeClosed />}
+            </button>
+          </label>
+          <button
+            type="submit"
+            className="border-2 w-full rounded-xl p-2 hover:p-[2.7px] hover:font-bold hover:text-lg border-t-purple-400 border-l-yellow-400 border-b-yellow-500 border-r-purple-500 hover:bg-linear-to-tr from-purple-700 to-yellow-600 hover:border-4"
+          >
+            Register
+          </button>
+
+          <nav className="underline hover:text-blue-400">
+            <Link to="/login">Already Registered</Link>
+          </nav>
+        </form>
+      </section>
+    </>
   );
 }
