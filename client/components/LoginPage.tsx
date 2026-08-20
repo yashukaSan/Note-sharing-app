@@ -20,7 +20,10 @@ export default function LoginPage(){
       const userName = document?.querySelector('#username') as HTMLInputElement | null;
       const password = document.querySelector('#password') as HTMLInputElement | null;
 
-      if (!password) return;
+      if (!password) {
+        localStorage.setItem('message', "Please Enter Password");
+        return;
+      };
 
       const payload: userType = {
         password: password.value,
@@ -52,7 +55,11 @@ export default function LoginPage(){
          localStorage.setItem("message", responseData.message);
          checkMessage();
 
-        //  setTimeout(()=>navigate("/success"), 2000);
+         setTimeout(()=>{
+           navigate("/success");
+           localStorage.removeItem('message');
+           setMsg(null);
+         }, 1000);
          
        } else {
          console.error("Failed to send request");
@@ -73,8 +80,8 @@ export default function LoginPage(){
     return (
       <>
         {msg && (
-          <section className="absolute backdrop-blur h-screen z-100 text-yellow-400 text-center w-screen align-center  mt-[15vh] mb-10[vh] p-5 border-3 items-center m-auto  ">
-            <p className="border w-full " >{msg}</p>
+          <section className="absolute backdrop-blur h-screen z-100 text-red-600 text-center w-screen flex disabled:pointer-event-none cursor-not-allowed align-center justify-center items-center m-auto  ">
+            <p className="border-5 border-blue-300 m-auto font-serif uppercase p-6 rounded-3xl font-bold text-xl " >{msg}</p>
           </section>
         )}
         <Link to="/" id="home-link" className="absolute z-0" >
@@ -111,6 +118,7 @@ export default function LoginPage(){
                 Username:
                 <input
                   id="username"
+                  required
                   type="text"
                   placeholder="e.g., John Doe"
                   autoComplete="username"
