@@ -13,6 +13,7 @@ interface userType{
 export default function RegisterUser() {
   const [showPass, setShowPass] = useState(false);
   const navigator = useNavigate();
+  const [msg, setMsg] = useState<string|null>(null);
 
   async function handleSubmission(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -46,8 +47,14 @@ export default function RegisterUser() {
         console.log('Success', result);
         localStorage.setItem('token', result.token);
         localStorage.setItem("name", result.name);
+        localStorage.setItmm('message', result.message);
 
-        navigator("/success");
+        setTimeout(()=>{
+          navigator("/success");
+          localStorage.removeItem('message');
+          setMsg(null);
+        }, 1000)
+        
 
         name.value="";
         email.value="";
@@ -64,7 +71,15 @@ export default function RegisterUser() {
 
   return (
     <>
-      <Link to="/" id="home-link" >
+      {msg && (
+        <section className="absolute backdrop-blur h-screen z-100 text-red-600 text-center w-screen flex disabled:pointer-event-none cursor-not-allowed align-center justify-center items-center m-auto  ">
+          <p className="border-5 border-blue-300 m-auto font-serif uppercase p-6 rounded-3xl font-bold text-xl ">
+            {msg}
+          </p>
+        </section>
+      )}
+
+      <Link to="/" id="home-link">
         <h1 className="md:ml-3 fixed mt-10 ml-10 lg:mt-20 lg:ml-20 lg:text-4xl bg-blac dark:bg-black hover:dark:bg-[#303030] hover:dark:text-red-300 text-3xl text-pink-500 shadow-black rounded-xl p-3 font-bold shadow-2xl cursor-pointer ">
           Note-Sharer
         </h1>
