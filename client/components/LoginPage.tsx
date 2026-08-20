@@ -13,6 +13,7 @@ export default function LoginPage(){
     const [ showPass, setShowPass ] = useState(false);
     const [loginViaEmail, setLoginViaEmail] = useState(false);
     const navigate = useNavigate();
+    const [msg, setMsg] = useState<string|null>(null);
 
     function addData(){
       const userEmail = document?.querySelector('#userEmail') as HTMLInputElement | null;
@@ -48,7 +49,10 @@ export default function LoginPage(){
          const responseData = await response.json();
          localStorage.setItem('token', responseData.token);
          localStorage.setItem("name", responseData.name);
-         navigate("/success");
+         localStorage.setItem("message", responseData.message);
+         checkMessage();
+
+        //  setTimeout(()=>navigate("/success"), 2000);
          
        } else {
          console.error("Failed to send request");
@@ -61,15 +65,25 @@ export default function LoginPage(){
        
     }
 
+    async function checkMessage(){
+      const message = localStorage.getItem("message");
+      if(message) setMsg(message);
+    }
+
     return (
       <>
-        <Link to="/" id="home-link">
+        {msg && (
+          <section className="absolute backdrop-blur h-screen z-100 text-yellow-400 text-center w-screen align-center  mt-[15vh] mb-10[vh] p-5 border-3 items-center m-auto  ">
+            <p className="border w-full " >{msg}</p>
+          </section>
+        )}
+        <Link to="/" id="home-link" className="absolute z-0" >
           <h1 className="md:ml-3 fixed mt-10 ml-10 bg-blac dark:bg-black hover:dark:bg-[#303030] hover:dark:text-red-300 text-3xl text-pink-500 shadow-black rounded-xl p-3 font-bold shadow-2xl cursor-pointer ">
             Note-Sharer
           </h1>
         </Link>
 
-        <section className="py-12 overflow-hidden bg-blue-600 min-h-screen flex items-center justify-center dark:bg-[#191919] ">
+        <section className="py-12 z-0 overflow-hidden bg-blue-600 min-h-screen flex items-center justify-center dark:bg-[#191919] ">
           <form
             className="flex rounded-3xl flex-col gap-5 justify-center items-center border-[#fe2e9e] text-white border-6 min-w-60 h-full p-8"
             onSubmit={(e) => {
@@ -93,7 +107,7 @@ export default function LoginPage(){
                 />
               </label>
             ) : (
-              <label className="border-l-red-400 border-t-red-400 border-r-blue-500 border-b-blue-500 border-3 grid grid-cols-2 p-2 w-full xl:w-[45%] rounded-xl justify-around items-center 10 ">
+              <label className="border-l-red-400 border-t-red-400 border-r-blue-500 border-b-blue-500 border-3 grid grid-cols-2 p-2 w-full rounded-xl justify-around items-center 10 ">
                 Username:
                 <input
                   id="username"
