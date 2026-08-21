@@ -1,4 +1,4 @@
-import Header from '../components/Header';
+import Header from '../components/header/SuccessHead';
 import Footer from '../components/Footer'
 
 function MainPage(){

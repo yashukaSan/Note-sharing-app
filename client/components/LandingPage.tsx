@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import Header from './Header.tsx';
+import Header from './header/LoginHead.tsx';
 import Footer from './Footer.tsx';
 import {type JSX, useState} from 'react';
 import { motion, useScroll, useMotionValueEvent } from "motion/react";
