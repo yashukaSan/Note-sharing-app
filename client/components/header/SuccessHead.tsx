@@ -14,7 +14,7 @@ export default function Header() {
     }
   return (
     <>
-      <header className="flex p-3 static bg-[#dfdfdf] justify-between rounde-xl lg:p-6 bg-linear-to-tr from-pink-700 via-[#ddc9ab] to-blue-700 dark:from-[#765221] dark:via-[#b0470d] dark:to-[#765221] ">
+      <header className="flex p-3 h-27 static bg-[#dfdfdf] justify-between rounde-xl lg:p-6 bg-linear-to-tr from-pink-700 via-[#ddc9ab] to-blue-700 dark:from-[#765221] dark:via-[#b0470d] dark:to-[#765221] ">
         <h1 className="md:ml-3 bg-blac dark:bg-black hover:dark:bg-[#303030] hover:dark:text-red-300 text-3xl text-pink-500 shadow-black rounded-xl p-3 font-bold shadow-2xl cursor-pointer ">
           Note-Sharer
         </h1>
