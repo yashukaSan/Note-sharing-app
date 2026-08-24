@@ -8,6 +8,7 @@ import MainPage from "../mainSec/MainPage.tsx";
 import "./App.css";
 import LoginPage from "../components/LoginPage";
 import RegisterPage from "../components/RegisterUser";
+import Profile from "../mainSec/Profile"
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -25,6 +26,7 @@ createRoot(document.getElementById("root")!).render(
             </ProtectedRoute>
           }
         />
+        <Route path="/success/me" element={<Profile />} />
 
         <Route path="#" element={<Navigate to="/" replace />} />
       </Routes>
