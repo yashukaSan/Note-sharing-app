@@ -1,5 +1,8 @@
 import { User } from '../models/user.model';
 import {Request, Response} from 'express';
+import {type UserPayload, generateAccessToken, generateRefreshToken} from './token.controller'
+
+let refreshTokenDb: string[] = [];
 
 const registerUser = async(req: Request, res: Response) => {
     try{
@@ -65,7 +68,21 @@ const loginUser = async (req:Request, res: Response) => {
             return res.status(401).json({ message: "Invalid credentials" });
         }
 
-        return res.status(200).json({message: "Login successful"});
+        const userPayload: UserPayload = user;
+
+        const accessToken = generateAccessToken(userPayload);
+        const refreshToken = generateRefreshToken(userPayload);
+
+        refreshTokenDb.push(refreshToken);
+
+        res.cookie('refreshToken', refreshToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: 'strict',
+            maxAge: 7*24*60*1000
+        });
+
+        return res.status(200).json({ message: "Login successful", accessToken });
 
     }
     catch(err){
