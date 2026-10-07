@@ -3,12 +3,12 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx';
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router";
-import ProtectedRoute from "../components/protectedMain";
+import ProtectedRoute from "../components/protectedMain.tsx";
 import MainPage from "../mainSec/MainPage.tsx";
 import "./App.css";
-import LoginPage from "../components/LoginPage";
-import RegisterPage from "../components/RegisterUser";
-import Profile from "../mainSec/Profile"
+import LoginPage from "../components/LoginPage.tsx";
+import RegisterPage from "../components/RegisterUser.tsx";
+import Profile from "../mainSec/Profile.tsx"
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
