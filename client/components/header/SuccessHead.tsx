@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import { useState } from "react";
 import { motion } from "motion/react";
 import { Power } from 'lucide-react';
-import Logout from '../../mainSec/logout';
+import Logout from '../../mainSec/logout.tsx';
 
 export default function Header() {
   const [isHover, setIsHover] = useState(false);
