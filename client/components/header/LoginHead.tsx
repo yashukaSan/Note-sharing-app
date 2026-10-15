@@ -6,11 +6,11 @@ import {motion} from 'motion/react';
 export default function Header() {
   const [visible, setVisible] = useState(false);
   const linkClass =
-    "rounded-xl p-1 shadow-black transition duration-300 hover:-translate-y-1 hover:border-2 hover:border-blue-300 hover:shadow-lg";
+    "rounded-xl p-1 m-[2px] hover:m-0 shadow-black transition duration-300 hover:-translate-y-1 hover:border-[2px] hover:border-blue-300 hover:shadow-lg";
     return (
       <header className="flex p-3 static bg-[#dfdfdf] justify-between rounde-xl lg:p-6 bg-linear-to-tr from-pink-700 via-[#ddc9ab] to-blue-700 dark:from-[#765221] dark:via-[#b0470d] dark:to-[#765221] ">
         <h1 className="md:ml-3 bg-blac dark:bg-black hover:dark:bg-[#303030] hover:dark:text-red-300 text-3xl text-pink-500 shadow-black rounded-xl p-3 font-bold shadow-2xl cursor-pointer ">
-          Note-Sharer
+          <Link to="#">Note-Sharer</Link>
         </h1>
 
         <nav className="justify-around w-[60%] items-center border-[#adadad] bg-[#dadada] border-3 border-x-6 rounded-xl text-pink-500  font-semibold lg:w-[50%] xl:text-xl hidden md:flex bg-linear-to-t from-cyan-400 via-white to-cyan-400 dark:from-red-500 dark:to-red-500 dark:via-black dark:text-cyan-300 ">
