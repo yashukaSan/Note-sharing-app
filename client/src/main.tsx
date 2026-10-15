@@ -9,6 +9,10 @@ import "./App.css";
 import LoginPage from "../components/LoginPage.tsx";
 import RegisterPage from "../components/RegisterUser.tsx";
 import Profile from "../mainSec/Profile.tsx"
+import Support from '../components/utils/SupportForum.tsx';
+import Blogs from "../components/utils/Blog.tsx";
+import Contact from "../components/utils/ContactPage.tsx";
+
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -17,6 +21,9 @@ createRoot(document.getElementById("root")!).render(
         <Route path="/" element={<App />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/support" element={<Support />} />
+        <Route path="/blog" element={<Blogs />} />
+        <Route path="/contact" element={<Contact />} />
 
         <Route
           path="/success"
