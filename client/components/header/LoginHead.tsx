@@ -14,16 +14,13 @@ export default function Header() {
         </h1>
 
         <nav className="justify-around w-[60%] items-center border-[#adadad] bg-[#dadada] border-3 border-x-6 rounded-xl text-pink-500  font-semibold lg:w-[50%] xl:text-xl hidden md:flex bg-linear-to-t from-cyan-400 via-white to-cyan-400 dark:from-red-500 dark:to-red-500 dark:via-black dark:text-cyan-300 ">
-          <Link to="#contact-us" className={linkClass}>
+          <Link to="contact" className={linkClass}>
             Contact Us
           </Link>
-          <Link to="#help" className={linkClass}>
-            Help
-          </Link>
-          <Link to="#support" className={linkClass}>
+          <Link to="support" className={linkClass}>
             Support Forum
           </Link>
-          <Link to="#blog" className={linkClass}>
+          <Link to="blog" className={linkClass}>
             Blog
           </Link>
           <div className="border h-8 mx-1"></div>
