@@ -1,11 +1,11 @@
 import { Schema, model, Document } from 'mongoose';
 import bcrypt from 'bcrypt';
 
-interface IUserMethods{
+interface UserMethods{
     comparePassword(password: string): Promise<boolean>;
 }
 
-export interface IUser extends Document {
+export interface User extends Document {
     Uname: string;
     Uemail: string;
     username: string;
@@ -13,7 +13,7 @@ export interface IUser extends Document {
     comparePassword(password: string): Promise<boolean>;
 }
 
-const UserSchema = new Schema<IUser, any, IUserMethods>({
+const UserSchema = new Schema<User, any, UserMethods>({
     Uname: {
         type: String,
         required: true
@@ -41,7 +41,7 @@ const UserSchema = new Schema<IUser, any, IUserMethods>({
     }
 }, { timestamps: true });
 
-UserSchema.pre<IUser>('save', async function() {
+UserSchema.pre<User>('save', async function() {
     if (!this.isModified('password')) return;
     try {
         this.password = await bcrypt.hash(this.password!, 12);
@@ -58,4 +58,4 @@ UserSchema.methods.comparePassword = async function(password: string) {
     }
 };
 
-export const User = model<IUser>('User', UserSchema);
+export const User = model<User>('User', UserSchema);

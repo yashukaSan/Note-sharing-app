@@ -7,6 +7,21 @@ import router from './route/auth';
 
 const app = express();
 
+interface UserPayload{
+    Uname: string;
+    Uemail: string;
+    username: string;
+    password: string;
+}
+
+declare global{
+    namespace Express{
+        interface Request{
+            user?: UserPayload
+        }
+    }
+}
+
 app.use(cors({
     origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
     credentials: true,

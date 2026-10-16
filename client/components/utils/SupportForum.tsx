@@ -1,4 +1,5 @@
 import type { JSX } from "react";
+import Header from '../header/LoginHead'
 interface QuesAns {
   Ques: string;
   Ans: string;
@@ -113,6 +114,7 @@ export default function Support() {
 
   return (
     <>
+    <Header/>
       <section id="faq-section" className="bg-black text-yellow-400 min-h-screen grid">{printQuestions()}</section>
     </>
   );

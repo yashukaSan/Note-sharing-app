@@ -188,7 +188,8 @@ export default function LandingPage():JSX.Element {
             <li
               key={item.span}
               className={` h-80 max-w-120 px-10 rounded-4xl mx-4 overflow-y-auto flex flex-col justify-around 
-                bg-linear-to-br from-blue-400 to-green-400 border-5 border-cyan-700 hover:border-cyan-500 `}
+                bg-linear-to-br from-blue-400 transition duration-600 to-green-400 border-5 border-cyan-700
+               hover:border-red-400 `}
               onMouseEnter={() => {
                 setIsHover(true);
                 setIndNum(ind);
@@ -200,13 +201,19 @@ export default function LandingPage():JSX.Element {
             >
               <p
                 className={
-                  isHover && indNum === ind ? "font-semibold text-yellow-200" : ""
+                  isHover && indNum === ind
+                    ? "duration-600 font-semibold text-yellow-200"
+                    : "duration-800 font-semibold "
                 }
               >
                 {item.p}
               </p>
               <span
-                className={indNum !== ind ? "text-gray-300" : "text-[#ffffff]"}
+                className={
+                  indNum !== ind
+                    ? "text-gray-200 duration-600 "
+                    : "duration-600 font-semibold text-[#ffffff]"
+                }
               >
                 {item.span}
               </span>
