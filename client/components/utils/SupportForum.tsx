@@ -90,18 +90,20 @@ export default function Support() {
 
       for (const j of Object.entries(i[1])) {
         articles.push(
-          <article>
-            <h2>{j[0]}</h2>
-            <h3>{j[1].Ques}</h3>
-            <p>{j[1].Ans}</p>
+          <article className=" m-3 text-[#e9efe9]">
+            <h2 className="text-2xl font-semibold">{j[0]}</h2>
+            <h3 className="text-lg font-medium text-[#a3c1c0] hover:text-white ">&bull;&nbsp;{j[1].Ques}</h3>
+            <p className="">&rarr;{j[1].Ans}</p>
           </article>,
         );
       }
 
       sections.push(
-        <section>
-          <h1>{i[0]}</h1>
-          <div>{articles}</div>
+        <section className="border-blue-500 border-3 m-2 rounded-3xl p-5">
+          <h1 className="text-4xl uppercase font-serif font-semibold justify-center text-center">
+            {i[0]}
+          </h1>
+          <div className="border rounded-2xl p-2 bg-[#335150]">{articles}</div>
         </section>,
       );
     }
@@ -111,7 +113,7 @@ export default function Support() {
 
   return (
     <>
-      <section id="faq-section">{printQuestions()}</section>
+      <section id="faq-section" className="bg-black text-yellow-400 min-h-screen grid">{printQuestions()}</section>
     </>
   );
 }
