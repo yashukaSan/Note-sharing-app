@@ -10,7 +10,7 @@ export default function Header() {
     return (
       <header className="flex p-3 static bg-[#dfdfdf] justify-between rounde-xl lg:p-6 bg-linear-to-tr from-pink-700 via-[#ddc9ab] to-blue-700 dark:from-[#765221] dark:via-[#b0470d] dark:to-[#765221] ">
         <h1 className="md:ml-3 bg-blac dark:bg-black hover:dark:bg-[#303030] hover:dark:text-red-300 text-3xl text-pink-500 shadow-black rounded-xl p-3 font-bold shadow-2xl cursor-pointer ">
-          <Link to="#">Note-Sharer</Link>
+          <Link to="/">Note-Sharer</Link>
         </h1>
 
         <nav className="justify-around w-[60%] items-center border-[#adadad] bg-[#dadada] border-3 border-x-6 rounded-xl text-pink-500  font-semibold lg:w-[50%] xl:text-xl hidden md:flex bg-linear-to-t from-cyan-400 via-white to-cyan-400 dark:from-red-500 dark:to-red-500 dark:via-black dark:text-cyan-300 ">
@@ -48,16 +48,13 @@ export default function Header() {
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 15, stiffness: 250 }}
           >
-            <Link to="#contact-us" className={linkClass}>
+            <Link to="/contact-us" className={linkClass}>
               Contact Us
             </Link>
-            <Link to="#help" className={linkClass}>
-              Help
-            </Link>
-            <Link to="#support" className={linkClass}>
+            <Link to="/support" className={linkClass}>
               Support Forum
             </Link>
-            <Link to="#blog" className={linkClass}>
+            <Link to="/blog" className={linkClass}>
               Blog
             </Link>
             <nav className="flex md:gap-12 items-center justify-center gap-2">
