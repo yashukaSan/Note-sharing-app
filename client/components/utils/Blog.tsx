@@ -1,6 +1,8 @@
 import type{ JSX } from 'react';
 import { useState } from 'react';
-import { Eye, ThumbsUp, MessageCircle } from 'lucide-react';
+import { Eye, ThumbsUp, MessageCircle, ChevronUp, ChevronDown } from 'lucide-react';
+import Header from '../header/LoginHead';
+
 // Category: Study Hacks & Productivity
 
 // 1. The "Cornell Method": Why It’s the Gold Standard for Note-Taking
@@ -353,10 +355,9 @@ const platformBlogData: {posts: PostType[]} = {
   ]
 };
 
-
-
+// Main function
 export default function Blogs(){
-    const [ currId, setCurrId ] = useState(null);
+    const [ currId, setCurrId ] = useState<string|null>(null);
 
     function showBlogs(){
         function writeTags(lst: string[]){
@@ -371,52 +372,129 @@ export default function Blogs(){
 
         for(const i of platformBlogData.posts ){
             blogs.push(
-                <article id={`${i.id}`} key={`${i}-${i.id}`} className="border-5 mb-4" >
-                    <h2>{i.title}</h2>
-                    <div>
-                        <h3>{i.hook}</h3>
-                        <p>{i.publishDate}</p>
-                    </div>
-                    <section>
-                        <img src={i.media?.url} alt={i.media?.alt} aria-label={i.media?.alt} />
-                        <section>
-                            <div>
-                            <h4>{writeTags(i.tags)}</h4>
-                            <h2>{i.title}</h2>
-                            <p>{i.summary}</p>
-                            <button onClick={()=>{if(currId===i.id) setCurrId(null); else setCurrId(i.id) }}>
-                                Read More &darr;
-                            </button>
-                            {currId===i.id && (
-                                <p>{i.content}</p>
-                            )}
-                            </div>
-                            <div>
-                                <img src={i.author?.avatar} alt={`${i.author?.name} picture`} />
-                                <span>{i.author?.name}</span>
-                                <span>&nbsp; -{i.author?.role}  </span>
-                            </div>
-                        </section>
+              <article className="grid w-full border max-w-4xl p-3 mx-auto lg:mt-2">
+                {/* Category main heading */}
+                <header className="w-full text-center">
+                  <h1 className="font-serif text-3xl font-extrabold text-[rgb(20,16,20)] underline sm:text-4xl lg:text-3xl xl:text-3xl 2xl:text-4xl">
+                    {i.category}
+                  </h1>
+                </header>
+
+                {/* blog post card */}
+                <article
+                  id={`${i.id}`}
+                  key={`${i.id}`}
+                  className="w-full max-w-md mx-auto overflow-hidden border-red-700 bg-linear-to-tl from-red-600 to-blue-400 rounded-2xl p-6 sm:p-10 md:max-w-2xl lg:max-w-3xl xl:max-w-4xl  md:border-4 h-[20vh] lg:h-[70vh]"
+                >
+                  {/* Post card heading */}
+                  <h2 className="mb-4 font-serif text-2xl font-bold text-center text-yellow-100 sm:text-3xl lg:text-xl xl:text-3xl">
+                    {i.title}
+                  </h2>
+
+                  <div className="flex flex-col justify-between gap-4 mb-6 sm:flex-row sm:items-center">
+                    <h3 className="w-full font-serif text-lg font-semibold text-gray-800 sm:text-xl lg:text-lg xl:text-xl sm:w-3/4">
+                      {i.hook}
+                    </h3>
+                    <p className="text-sm text-gray-100 sm:text-right whitespace-nowrap">
+                      {i.publishDate}
+                    </p>
+                  </div>
+
+                  {/* Blog Main Content & Image Wrapper */}
+                  <section className="relative w-full overflow-hidden rounded-xl min-h-100 mb-6">
+                    {/* Background Image */}
+                    <img
+                      src={i.media?.url}
+                      alt={i.media?.alt || "Blog media"}
+                      aria-label={i.media?.alt}
+                      className="absolute inset-0 z-0 object-cover w-full h-full brightness-50"
+                    />
+
+                    {/* Overlay Content */}
+                    <section className="relative z-10 flex flex-col justify-between h-full p-4 text-gray-200 transition duration-300 sm:p-6 bg-black/30 backdrop-blur-[2px]">
+                      <div className="max-h-80 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-current">
+                        <div className="text-sm tracking-wide text-yellow-300 uppercase">
+                          {writeTags(i.tags)}
+                        </div>
+                        <h2 className="my-2 text-xl font-bold text-red-300 xl:text-2xl">
+                          {i.title}
+                        </h2>
+                        <p className="mb-3 text-sm leading-relaxed sm:text-base xl:text-lg">
+                          {i.summary}
+                        </p>
+
+                        {currId === i.id && (
+                          <p className="text-sm text-gray-300 xl:text-lg animate-fadeIn">
+                            {i.content}
+                          </p>
+                        )}
+
+                        {/* Read more button */}
+                        <button
+                          onClick={() =>
+                            setCurrId(currId === i.id ? null : i.id)
+                          }
+                          className="flex items-center gap-2 px-4 py-2 mt-4 text-sm font-medium text-white transition bg-blue-600 border border-transparent rounded-full hover:bg-blue-700 hover:border-blue-400"
+                        >
+                          {currId === i.id ? (
+                            <>
+                              Read Less <ChevronUp className="w-4 h-4" />
+                            </>
+                          ) : (
+                            <>
+                              Read More <ChevronDown className="w-4 h-4" />
+                            </>
+                          )}
+                        </button>
+                      </div>
+
+                      {/* Blogger Information */}
+                      <div className="flex items-center gap-4 w-[99%] p-3 mt-4 border border-white/20 rounded-xl bg-linear-to-b from-[#be9090]/80 to-[#3949eb]/80 backdrop-blur-sm">
+                        <img
+                          src={i.author?.avatar}
+                          alt={`${i.author?.name}`}
+                          className="object-cover w-12 h-12 rounded-full ring-2 ring-white/50"
+                        />
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                          <span className="text-base font-bold">
+                            {i.author?.name}
+                          </span>
+                          <span className="text-xs text-gray-300 sm:text-sm">
+                            • {i.author?.role}
+                          </span>
+                        </div>
+                      </div>
                     </section>
-                    <footer>
-                        <div><Eye/> {i.engagement?.views}</div>
-                        <div><ThumbsUp /> {i.engagement?.likes}</div>
-                        <div><MessageCircle /> {i.engagement?.commentsCount}</div>
-                    </footer>
+                  </section>
+
+                  {/* Footer Engagement */}
+                  <footer className="flex items-center justify-around pt-4 font-semibold text-white border-t border-white/20 sm:text-lg">
+                    <div className="flex items-center gap-2">
+                      <Eye className="w-5 h-5" />{" "}
+                      <span>{i.engagement?.views}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <ThumbsUp className="w-5 h-5" />{" "}
+                      <span>{i.engagement?.likes}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <MessageCircle className="w-5 h-5" />{" "}
+                      <span>{i.engagement?.commentsCount}</span>
+                    </div>
+                  </footer>
                 </article>
-            )
+              </article>,
+            );
         }
         return blogs;
     }
 
     return(
         <>
-        <h1>
-            Hellow from BLOG PAGE &darr;
-        </h1>
-        <div>
+        <Header />
+        <section className="grid grid-cols-1 gap-13 lg:gap-y-10 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3 bg-linear-to-tr from-violet-700 via-yellow-400 to-blue-300 " >
             {showBlogs()}
-        </div>
+        </section>
         </>
     );
 }
