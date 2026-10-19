@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx';
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router";
-import ProtectedRoute from "../components/protectedMain.tsx";
+import ProtectedRoute from "../components/protectedMain";
 import MainPage from "../mainSec/MainPage.tsx";
 import "./App.css";
 import LoginPage from "../components/LoginPage.tsx";
