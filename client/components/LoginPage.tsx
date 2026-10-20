@@ -62,7 +62,7 @@ export default function LoginPage(){
          }, 1000);
          
        } else {
-         console.error("Failed to send request");
+         console.error("Failed to Send Request");
        }
       }
       catch(err){
