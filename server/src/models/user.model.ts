@@ -5,7 +5,7 @@ interface UserMethods{
     comparePassword(password: string): Promise<boolean>;
 }
 
-export interface User extends Document {
+export interface UserInterface extends Document {
     Uname: string;
     Uemail: string;
     username: string;
@@ -13,7 +13,7 @@ export interface User extends Document {
     comparePassword(password: string): Promise<boolean>;
 }
 
-const UserSchema = new Schema<User, any, UserMethods>({
+export const UserSchema = new Schema<UserInterface, any, UserMethods>({
     Uname: {
         type: String,
         required: true
@@ -41,7 +41,7 @@ const UserSchema = new Schema<User, any, UserMethods>({
     }
 }, { timestamps: true });
 
-UserSchema.pre<User>('save', async function() {
+UserSchema.pre<UserInterface>('save', async function() {
     if (!this.isModified('password')) return;
     try {
         this.password = await bcrypt.hash(this.password!, 12);
@@ -58,4 +58,4 @@ UserSchema.methods.comparePassword = async function(password: string) {
     }
 };
 
-export const User = model<User>('User', UserSchema);
+export const User = model<UserInterface>('User', UserSchema);
