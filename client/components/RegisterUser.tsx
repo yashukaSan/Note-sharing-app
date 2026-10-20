@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Link } from 'react-router';
 import { useNavigate } from 'react-router';
 
+import API from '../src/api.ts';
+
 interface userType{
   Uname: string,
   Uemail: string,
@@ -32,22 +34,11 @@ export default function RegisterUser() {
       password : paswd.value
     }
 
-    console.log('push data called');
     try{
-      const response = await fetch('/api/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': "application/json",
-        },
-        body: JSON.stringify(payload)
-      });
 
-      if(response.ok){
-        const result = await response.json();
-        console.log('Success', result);
-        localStorage.setItem('token', result.token);
-        localStorage.setItem("name", result.name);
-        localStorage.setItmm('message', result.message);
+      const response = await API.post('/api/auth/register', payload);
+
+      if(response.status === 201){
 
         setTimeout(()=>{
           navigator("/success");
@@ -62,10 +53,15 @@ export default function RegisterUser() {
         paswd.value="";
       }
       else{
-        console.error('Failed to reguster user');
+        console.error('Failed to register user\n');
       }
     }catch(err){
+
       console.error(err);
+
+      if(err instanceof Error){
+        console.error(err.message)
+      }
     }
   }
 
@@ -158,6 +154,7 @@ export default function RegisterUser() {
             </button>
           </label>
           <button
+            onClick={()=>handleSubmission}
             type="submit"
             className="border-2 w-full rounded-xl p-2 hover:p-[2.7px] hover:font-bold hover:text-lg border-t-purple-400 border-l-yellow-400 border-b-yellow-500 border-r-purple-500 hover:bg-linear-to-tr from-purple-700 to-yellow-600 hover:border-4"
           >
