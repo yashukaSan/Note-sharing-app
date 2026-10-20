@@ -1,7 +1,7 @@
 import express, { Request, Response, Router } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { User, IUser } from '../models/user.model';
+import { User, type UserInterface } from '../models/user.model';
 
 const  router: Router = express.Router();
 
@@ -22,7 +22,7 @@ interface LoginBody {
 router.post('/register', async (req: Request<{}, {}, RegisterBody>, res: Response) => {
     try {
         const { Uname, Uemail, username, password } = req.body;
-
+        
         if (!Uname || !Uemail || !username || !password) {
             return res.status(400).json({ message: 'All fields are required!' });
         }
@@ -30,8 +30,8 @@ router.post('/register', async (req: Request<{}, {}, RegisterBody>, res: Respons
         const existingUser = await User.findOne({ Uemail });
         if (existingUser) {
             return res.status(400).json({ message: 'User already exists' });
-        }
-
+        }        
+        
         const existingUsername = await User.findOne({ username });
         if (existingUsername) {
             return res.status(400).json({ message: 'Username already exists!' });
@@ -64,7 +64,7 @@ router.post('/login', async (req: Request<{}, {}, LoginBody>, res: Response) => 
         if(!passwd) return res.status(400).json({ message : "Password Required" });
 
         console.log("Uemail: ", uemail, !!uemail, "\nUSERNAME: ", !!username, username, "\nPASSWORD:", passwd);
-        const user: IUser | null = !!username
+        const user: UserInterface | null = !!username
             ? await User.findOne({ username: username })
             : await User.findOne({ Uemail: uemail });
 
